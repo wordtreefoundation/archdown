@@ -1,0 +1,44 @@
+GIT
+  remote: git://github.com/wordtreefoundation/archivist-client.git
+  revision: 1133e57a9d23240365ff54bf45b577f984177b8d
+  specs:
+    archivist-client (0.1.6)
+      faraday
+      faraday_middleware
+      representable
+      virtus (~> 1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    axiom-types (0.0.5)
+      descendants_tracker (~> 0.0.1)
+      ice_nine (~> 0.9)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
+    descendants_tracker (0.0.3)
+    equalizer (0.0.9)
+    faraday (0.8.9)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
+    ice_nine (0.11.0)
+    mini_portile (0.5.2)
+    multi_json (1.8.4)
+    multipart-post (1.2.0)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
+    representable (1.7.6)
+      multi_json
+      nokogiri
+    virtus (1.0.1)
+      axiom-types (~> 0.0.5)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0.1)
+      equalizer (~> 0.0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  archivist-client!
