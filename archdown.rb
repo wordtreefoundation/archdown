@@ -90,8 +90,12 @@ class Download
   end
 
   def go!
-    @client.search(@search_terms).each do |book|
-      Librarian.new(@library, book).store_book
+    page = 1
+    while not (books = @client.search(@search_terms.merge(:page => page))).empty?
+      books.each do |book|
+        Librarian.new(@library, book).store_book
+      end
+      page += 1
     end
   end
 end
