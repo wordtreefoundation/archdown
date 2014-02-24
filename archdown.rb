@@ -66,6 +66,8 @@ class Librarian
       text = @book.download
     rescue Archivist::Model::Document::UnsupportedFormat => e
       @failure = e.to_s
+    rescue StandardError => e
+      @failure = e.to_s
     end
 
     puts metadata.to_yaml
