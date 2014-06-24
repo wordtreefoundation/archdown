@@ -12,11 +12,11 @@ class Library
   end
 
   def first(identifier)
-    identifier[0..1]
+    identifier[0..1].downcase
   end
 
   def last(identifier)
-    identifier[-2..-1]
+    identifier[-2..-1].downcase
   end
 
   def path_for_identifier(identifier, *parts)
