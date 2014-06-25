@@ -2,6 +2,7 @@ require 'fileutils'
 require 'yaml'
 require 'archivist/client'
 require 'optparse'
+require 'retriable'
 
 # The Library knows about its locations for books (e.g. file directory)
 class Library
@@ -93,7 +94,13 @@ class Download
 
   def go!
     page = 1
-    while not (books = @client.search(@search_terms.merge(:page => page))).empty?
+    loop do
+      books = Retriable.retriable :on => Faraday::Error::TimeoutError do
+        @client.search(@search_terms.merge(:page => page))
+      end
+
+      break if books.empty?
+
       books.each do |book|
         Librarian.new(@library, book).store_book
       end

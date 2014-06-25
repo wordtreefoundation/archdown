@@ -38,6 +38,7 @@ GEM
     representable (1.7.6)
       multi_json
       nokogiri
+    retriable (1.4.1)
     virtus (1.0.1)
       axiom-types (~> 0.0.5)
       coercible (~> 1.0)
@@ -50,3 +51,4 @@ PLATFORMS
 DEPENDENCIES
   archivist-client!
   debugger
+  retriable
