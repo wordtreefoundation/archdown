@@ -10,7 +10,7 @@ Download from the command-line:
 
 ```sh
 $ gem install archdown
-$ ruby archdown -y 1700-1830
+$ archdown -y 1700-1830
 
 # ...
 # downloads a lot of books into ./library
