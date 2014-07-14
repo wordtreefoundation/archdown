@@ -21,7 +21,15 @@ More advanced usage: use as a Ruby library. Here's an example of a query that do
 
 ```ruby
 d = Archdown::Download.new('library',
-  :filters => ["identifier:firstbooknapole00gruagoog"],
+  :filters => ["identifier:firstbooknapole00gruagoog"])
+
+d.go!{ |metadata, librarian| puts m.inspect }
+```
+
+Or a set of books within a range of years:
+
+```ruby
+d = Archdown::Download.new('library',
   :start_year => 1800, :end_year => 1850)
 
 d.go!{ |metadata, librarian| puts m.inspect }
