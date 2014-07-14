@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require "archdown"
+require 'optparse'
+
+# download books (text files) from archive.org
+
+options = {
+  :library_root => './library',
+  :start_year => 1700,
+  :end_year   => 1700
+}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: archdown [options]"
+
+  opts.on("-l", "--library PATH", "Store files in PATH") do |lib|
+    options[:library_root] = lib
+  end
+
+  opts.on("-y", "--year RANGE", "Query for books published within RANGE years, e.g. 1700-1750") do |range|
+    options[:start_year] = range.split('-').first.to_i
+    options[:end_year] = range.split('-').last.to_i
+  end
+end
+parser.parse!
+
+if ARGV.empty?
+  download = Archdown::Download.new(
+    options[:library_root],
+    :start_year => options[:start_year],
+    :end_year   => options[:end_year])
+  download.go! do |metadata, librarian|
+    puts metadata.to_yaml
+  end
+else
+  puts parser
+  puts
+  p options, ARGV
+end
+
+
+
