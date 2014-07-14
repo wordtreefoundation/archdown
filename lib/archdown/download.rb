@@ -1,4 +1,5 @@
 require 'archivist/client'
+require 'retriable'
 
 require 'archdown/librarian'
 require 'archdown/library'
@@ -15,7 +16,13 @@ module Archdown
 
     def go!(&each_book)
       page = 1
-      while not (books = @client.search(@search_terms.merge(:page => page))).empty?
+      loop do
+        books = ::Retriable.retriable :on => Faraday::Error::TimeoutError do
+          @client.search(@search_terms.merge(:page => page))
+        end
+  
+        break if books.empty?
+  
         books.each do |book|
           Librarian.new(@library, book).store_book(&each_book)
         end
