@@ -18,7 +18,13 @@ module Archdown
       page = 1
       loop do
         books = ::Retriable.retriable :on => Faraday::Error::TimeoutError do
-          @client.search(@search_terms.merge(:page => page))
+          terms = @search_terms.merge(:page => page)
+          begin
+            @client.search(terms)
+          rescue e
+            $stderr.puts "Search Terms: #{JSON.pretty_generate(terms)}"
+            raise
+          end
         end
   
         break if books.empty?
