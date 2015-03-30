@@ -21,9 +21,9 @@ module Archdown
           terms = @search_terms.merge(:page => page)
           begin
             @client.search(terms)
-          rescue e
+          rescue => e
             $stderr.puts "Search Terms: #{JSON.pretty_generate(terms)}"
-            raise
+            raise e
           end
         end
   
