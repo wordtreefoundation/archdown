@@ -17,7 +17,7 @@ module Archdown
     def metadata
       {
         'title'  => @book.title,
-        'author' => @book.creators ? @book.creators.join(';') : nil,
+        'author' => @book.creator,
         'year'   => @book.date.year,
         'source' => "http://archive.org/details/#{@book.identifier}",
         'status' => "OCR ONLY",
