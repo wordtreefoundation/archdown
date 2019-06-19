@@ -15,10 +15,11 @@ module Archdown
     end
 
     def metadata
+      year = @book.date.kind_of?(Array) ? @book.date.first : @book.date
       {
         'title'  => @book.title,
         'author' => @book.creator,
-        'year'   => @book.date.year,
+        'year'   => year,
         'source' => "http://archive.org/details/#{@book.identifier}",
         'status' => "OCR ONLY",
         'archive_org_id' => @book.identifier,
